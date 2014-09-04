@@ -2,6 +2,7 @@
 db.sqlite3
 *~
 
-settings.py
+class_recorder_rest/settings.py
+class_recorder_rest/wsgi.py
 mediafiles/
 
