@@ -14,7 +14,7 @@ router.register(r'sessions', views.RecordingSessionViewSet)
 router.register(r'images', views.ImageViewSet)
 router.register(r'audios', views.AudioViewSet)
 router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+#router.register(r'groups', views.GroupViewSet)
 
 
 

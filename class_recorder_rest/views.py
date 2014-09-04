@@ -16,10 +16,10 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    
+#class GroupViewSet(viewsets.ModelViewSet):
+#    queryset = Group.objects.all()
+#    serializer_class = GroupSerializer
+#    
     
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
