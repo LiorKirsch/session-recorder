@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <title>Audio with images</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Title" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/my.css" />
+		<link href="skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css' />
+		<script src="http:////ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/lib/js/jquery-1.7.1.min.js"><\/script>')</script>
+		<script type="text/javascript" src="jplayer/jquery.jplayer.min.js"></script>
+
+		<script src="js/jquery.audioslideshow.js"></script>
+		<script>
+			$(document).ready(function() {
+				data = {'title' : 'Houdini Testing Slideshow',
+				  'audio_path' : './mp3/Houdini.mp3', 
+				  'duration': 213,
+				  'poster': "images/2.JPG" ,
+				  'images': [ {'image_path': 'images/1.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 3 },
+					  {'image_path': 'images/2.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 6 },
+					  {'image_path': 'images/3.JPG', 'thumbnail_path':'thumbnails/1.JPG','time_stamp': 9 },
+					  {'image_path': 'images/4.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 12 },
+					  {'image_path': 'images/5.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 25 },
+					  {'image_path': 'images/6.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 56 },
+					  {'image_path': 'images/7.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 91 },
+					  {'image_path': 'images/8.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 112 },
+					  {'image_path': 'images/9.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 124 },
+					  {'image_path': 'images/10.JPG', 'thumbnail_path':'thumbnails/1.JPG', 'time_stamp': 156 }]
+					  };
+					  
+				  var imagesArray = data['images'];
+				  for (i = 0; i < imagesArray.length; i++) { 
+					    var img = $('<img>'); 
+						img.attr('src', imagesArray[i].image_path);
+						img.attr('data-thumbnail', imagesArray[i].thumbnail_path);
+						img.attr('data-slide-time', imagesArray[i].time_stamp);
+						img.appendTo('#audio-slides');
+					}
+				$('#audio-slideshow').audioSlideshow({
+				jPlayerPath: "jplayer",
+				data_audio: data["audio_path"],
+				data_audio_duration: data["duration"]
+				});
+		
+			});
+		</script>
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<h1>Audio Slideshow <span>with jPlayer</span></h1>
+			</header>
+			<section>
+				<div id="audio-slideshow" >
+					<div class="audio-slideshow" >
+						<div id="audio-slides" class="audio-slides">
+							
+						</div>
+					</div>
+					
+					<div id="jp_container_1" class="jp-audio">
+						<div class="jp-type-single">
+							<div class="timeline">
+								<div class="timeline-controls"></div>
+								<div class="playhead"></div>
+							</div>
+							<div class="jp-gui jp-interface">
+								<ul class="jp-controls">
+									<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+									<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+									<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+									<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+									<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+									<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+								</ul>
+								<div class="jp-progress">
+									<div class="jp-seek-bar">
+										<div class="jp-play-bar"></div>
+									</div>
+								</div>
+								<div class="jp-volume-bar">
+									<div class="jp-volume-bar-value"></div>
+								</div>
+								<div class="jp-time-holder">
+									<div class="jp-current-time"></div>
+									<div class="jp-duration"></div>
+								</div>
+							</div>
+							<div class="jp-details">
+								<ul>
+									<li><span class="jp-title"></span></li>
+								</ul>
+							</div>
+							<div class="jp-no-solution">
+								<span>Update Required</span>
+								To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+        </div>
+    </body>
+</html>
