@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 import os
 import random, string
-       
+from django.conf import settings
+from stdimage import StdImageField
 
 def get_path(instance, filename):
     fileName, fileExtension = os.path.splitext(filename)
@@ -55,19 +56,19 @@ def get_image_path(instance, filename):
     
     dateTime = instance.creation_date_client.strftime('%Y-%m-%d_%H_%M')
     fileName = "%s%s" % (dateTime,fileExtension)
-    return "images/%s/%s" % (session_obj.recording_session_id, fileName)
+    return os.path.join("images" ,session_obj.recording_session_id, fileName)
 
 class Image(models.Model):
     creation_date_server = models.DateTimeField(auto_now_add=True, blank=True)
     creation_date_client = models.DateTimeField(blank=True)
     time_in_session = models.IntegerField(blank=True, null=True)
     creating_user = models.ForeignKey( User ,blank=True)
-    recording_session = models.ForeignKey( Recording_session )
+    recording_session = models.ForeignKey( Recording_session , related_name='images')
     gps_lat = models.FloatField(blank=True, null=True)
     gps_lng = models.FloatField(blank=True, null=True)
     
-    image_file = models.ImageField(upload_to=get_image_path)
-           
+    image_file = StdImageField(upload_to=get_image_path, variations={'thumbnail': (100, 75, True)})
+    
     def get_str(self):
         return model_to_dict(self, fields=['file_path','time_in_session','creation_date_client'])
 
@@ -92,7 +93,7 @@ class Audio(models.Model):
     gps_lng = models.FloatField(blank=True, null=True)  
 
     creating_user = models.ForeignKey( User ,blank=True)
-    recording_session = models.ForeignKey( Recording_session )
+    recording_session = models.ForeignKey( Recording_session , related_name='audios')
     
     file_path = models.FileField(upload_to=get_audio_path)
         
