@@ -207,37 +207,19 @@ class StdImageField(ImageField):
                 setattr(instance, self.attname, dst)
                 instance.save()
 
-#    def _set_thumbnail(self, instance=None, **kwargs):
-#        """Creates a "thumbnail" object as attribute of the ImageField instance
-#        Thumbnail attribute will be of the same class of original image, so
-#        "path", "url"... properties can be used
-#
-#        """
-#        warn('This setter is deprecated in favor of _set_variations.', DeprecationWarning)
-#        if getattr(instance, self.name):
-#            filename = self.generate_filename(instance,
-#                                              os.path.basename(getattr(instance, self.name).path))
-#            variation = getattr(self, 'thumbnail')
-#            thumbnail_filename = self._get_variation_filename(variation, filename)
-#            thumbnail_field = VariationField(thumbnail_filename)
-#            setattr(getattr(instance, self.name), 'thumbnail', thumbnail_field)
-
     def _set_thumbnail(self, instance=None, **kwargs):
         """Creates a "thumbnail" object as attribute of the ImageField instance
         Thumbnail attribute will be of the same class of original image, so
         "path", "url"... properties can be used
+
         """
-    
+        warn('This setter is deprecated in favor of _set_variations.', DeprecationWarning)
         if getattr(instance, self.name):
-            #fix the bug of wrong thumbnail path
-            #filename = self.generate_filename(instance,
-            #          os.path.basename(getattr(instance, self.name).path))
-            file_path = getattr(instance, self.name).path
-            file_prefix = self.upload_to[:self.upload_to.find('/')]
-            filename = file_path[file_path.find(file_prefix):]
-    
-            thumbnail_filename = self._get_thumbnail_filename(filename)
-            thumbnail_field = ThumbnailField(thumbnail_filename)
+            filename = self.generate_filename(instance,
+                                              os.path.basename(getattr(instance, self.name).path))
+            variation = getattr(self, 'thumbnail')
+            thumbnail_filename = self._get_variation_filename(variation, filename)
+            thumbnail_field = VariationField(thumbnail_filename)
             setattr(getattr(instance, self.name), 'thumbnail', thumbnail_field)
 
     def set_variations(self, instance=None, **kwargs):
