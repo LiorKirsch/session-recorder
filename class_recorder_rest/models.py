@@ -54,7 +54,7 @@ def get_image_path(instance, filename):
     fileName, fileExtension = os.path.splitext(filename)
     session_obj = instance.recording_session
     
-    dateTime = instance.creation_date_client.strftime('%Y-%m-%d_%H_%M')
+    dateTime = instance.creation_date_client.strftime('%Y-%m-%d_%H_%M_%S')
     fileName = "%s%s" % (dateTime,fileExtension)
     return os.path.join("images" ,session_obj.recording_session_id, fileName)
 
@@ -80,7 +80,7 @@ def get_audio_path(instance, filename):
     fileName, fileExtension = os.path.splitext(filename)
     session_obj = instance.recording_session
     
-    dateTime = instance.creation_date_client.strftime('%Y-%m-%d-%H-%M')
+    dateTime = instance.creation_date_client.strftime('%Y-%m-%d-%H-%M-%S')
     fileName = "%s%s" % (dateTime,fileExtension)
     return "audio/%s/%s" % (session_obj.recording_session_id, fileName)
 

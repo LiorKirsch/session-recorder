@@ -207,6 +207,21 @@ class StdImageField(ImageField):
                 setattr(instance, self.attname, dst)
                 instance.save()
 
+#    def _set_thumbnail(self, instance=None, **kwargs):
+#        """Creates a "thumbnail" object as attribute of the ImageField instance
+#        Thumbnail attribute will be of the same class of original image, so
+#        "path", "url"... properties can be used
+#
+#        """
+#        warn('This setter is deprecated in favor of _set_variations.', DeprecationWarning)
+#        if getattr(instance, self.name):
+#            filename = self.generate_filename(instance,
+#                                              os.path.basename(getattr(instance, self.name).path))
+#            variation = getattr(self, 'thumbnail')
+#            thumbnail_filename = self._get_variation_filename(variation, filename)
+#            thumbnail_field = VariationField(thumbnail_filename)
+#            setattr(getattr(instance, self.name), 'thumbnail', thumbnail_field)
+
     def _set_thumbnail(self, instance=None, **kwargs):
         """Creates a "thumbnail" object as attribute of the ImageField instance
         Thumbnail attribute will be of the same class of original image, so
@@ -231,7 +246,8 @@ class StdImageField(ImageField):
         "path", "url"... properties can be used
         """
         if getattr(instance, self.name):
-            filename = self.generate_filename(instance, os.path.basename(getattr(instance, self.name).path))
+            filename = self.generate_filename(instance,
+                                              os.path.basename(getattr(instance, self.name).path))
             for variation in self.variations:
                 if variation['name'] != 'size':
                     variation_filename = self._get_variation_filename(variation, filename)
