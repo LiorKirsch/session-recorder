@@ -9,6 +9,8 @@ import os
 import random, string
 from django.conf import settings
 from stdimage import StdImageField
+from mutagen.mp3 import MP3
+from django.db.models.signals import post_save
 
 def get_path(instance, filename):
     fileName, fileExtension = os.path.splitext(filename)
@@ -54,7 +56,7 @@ def get_image_path(instance, filename):
     fileName, fileExtension = os.path.splitext(filename)
     session_obj = instance.recording_session
     
-    dateTime = instance.creation_date_client.strftime('%Y-%m-%d_%H_%M_%S')
+    dateTime = instance.creation_date_client.strftime('%Y-%m-%dT%H_%M_%S')
     fileName = "%s%s" % (dateTime,fileExtension)
     return os.path.join("images" ,session_obj.recording_session_id, fileName)
 
@@ -80,7 +82,7 @@ def get_audio_path(instance, filename):
     fileName, fileExtension = os.path.splitext(filename)
     session_obj = instance.recording_session
     
-    dateTime = instance.creation_date_client.strftime('%Y-%m-%d-%H-%M-%S')
+    dateTime = instance.creation_date_client.strftime('%Y-%m-%dT%H_%M_%S')
     fileName = "%s%s" % (dateTime,fileExtension)
     return "audio/%s/%s" % (session_obj.recording_session_id, fileName)
 
@@ -97,7 +99,6 @@ class Audio(models.Model):
     
     file_path = models.FileField(upload_to=get_audio_path)
         
-
     def get_str(self):
         return model_to_dict(self, fields=['file_path','time_in_session','creation_date_client'])
 
@@ -105,3 +106,14 @@ class Audio(models.Model):
         output = "%s - %s" % (self.creation_date_server, self.recording_session)
         return output
  
+
+
+def update_duration(sender, instance, **kwargs):
+    audio_file = MP3( instance.file_path.path )
+    duration = audio_file.info.length
+    Audio.objects.filter(pk=instance.pk).update(duration=duration)
+       
+
+# register the signal
+post_save.connect(update_duration, sender=Audio, dispatch_uid="update_audio_duration")
+  

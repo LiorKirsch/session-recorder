@@ -13,8 +13,6 @@ import json
 
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from mutagen.mp3 import MP3
-
 
 from PIL import Image as PIL_Image
     
@@ -49,9 +47,6 @@ def build_slideshow(request, session_id):
 
 
     session_audio = Audio.objects.get(recording_session=session)
-
-    audio_file = MP3( session_audio.file_path.path )
-    duration = audio_file.info.length
     
     working_folder = session_id
     output = {}
