@@ -1,3 +1,13 @@
+Django Session recorder
+=======================
+
 The server side of the session recording project
-The Django rest framework is user.
-http://www.django-rest-framework.org/
+The Django rest framework is used.
+
+
+External libraries used
+-----------------------
+
+ * Django rest framework - http://www.django-rest-framework.org/
+ * Mutagen - https://github.com/nex3/mutagen
+ * Stdimage - https://github.com/humanfromearth/django-stdimage

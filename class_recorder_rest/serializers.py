@@ -47,11 +47,12 @@ class ImageSerializer(serializers.HyperlinkedModelSerializer):
                 
 class AudioSerializer(serializers.HyperlinkedModelSerializer):
     duration = serializers.Field(source='duration')
+    audio_file = HyperlinkedFileField(source='file_path')
     
     class Meta:
         model = Audio
         fields = ('url', 'creation_date_server', 'creation_date_client', 'time_in_session','creating_user', 'recording_session',
-                  'gps_lat','gps_lng','file_path','duration')     
+                  'gps_lat','gps_lng','audio_file','duration')     
         
                
 class RecordingSessionSerializer(serializers.ModelSerializer):
