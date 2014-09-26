@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DarkroomJS</title>
+  <link rel="stylesheet" href="css/darkroom.min.css">
+  <link rel="stylesheet" href="css/page.css">
+
+</head>
+<body>
+
+  <script src="js/fabric.js"></script>
+  <script src="js/darkroom.min.js"></script>
+  <div id="content">
+    <div class="container">
+      <section class="copy">
+
+        <h2>Original image</h2>
+
+        <figure class="image-container">
+          <img src="images/domokun.jpg" alt="DomoKun" id="target">
+        </figure>
+      </section>
+    </div>
+  </div>
+
+  <script>
+
+
+
+    var dkrm = new Darkroom('#target', {
+      // Size options
+      minWidth: 100,
+      minHeight: 100,
+      maxWidth: 650,
+      maxHeight: 500,
+
+      plugins: {
+        save: false,
+        crop: {
+          quickCropKey: 67, //key "c"
+          //minHeight: 50,
+          //minWidth: 50,
+          ratio: 1.5
+        }
+      },
+      init: function() {
+//      var cropPlugin = this.getPlugin('crop');
+
+  //      cropPlugin.selectZone(170, 25, 300, 300);
+        //cropPlugin.requireFocus();
+      }
+    });
+  
+/*
+
+    var imageEl = document.getElementById('target');
+    var canvasEl = document.getElementById('canvas');
+
+    var canvas = new fabric.Canvas(canvasEl, {
+      selection: false,
+      backgroundColor: '#ccc',
+    });
+
+    var image = new fabric.Image(imageEl, {
+    });
+
+    //image.rotate(90);
+    canvas.add(image);
+    canvas.centerObject(image);
+    image.setCoords();
+
+    //var ctx = canvas.getContext();
+    //ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    //ctx.fillRect(0, 0, 640, 100);
+    //ctx.fillRect(0, 100, 640, 100);
+    //ctx.fillRect(0, 200, 640, 100);
+    //ctx.fillRect(0, 300, 640, 100);
+*/
+
+  </script>
+</body>
+</html>

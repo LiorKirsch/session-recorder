@@ -7,6 +7,10 @@
 	width: 100%;
 }
 
+.marker {
+	z-index:2001; 
+}
+
 .timeline {
 	position: relative;
 	width: 100%;

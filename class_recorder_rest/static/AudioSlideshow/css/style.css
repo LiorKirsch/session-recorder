@@ -1,8 +1,8 @@
 /* Component style */
 
 .audio-slideshow {
-	width: 420px;
-	height: 420px;
+	width: 720px;
+	height: 620px;
 	position: relative;
 	margin: 0 auto;
 }
@@ -15,6 +15,7 @@
 	display: block;
 	position: absolute;
 	top: 0; left: 0;
+    padding-bottom: 60px;
 }
 
 .audio-slideshow .audio-control-interface {
@@ -77,14 +78,14 @@
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.4) inset;
 	position: absolute;
 	background: #B8BAC6;
-	top: 5px;
+	top: -15px;
 }
 
 .marker span {
 	padding: 5px;
 	position: absolute;
 	bottom: 20px;
-	opacity: 0;
+/*	opacity: 0;*/
 	left: -50px;
 	z-index: -1;
 	box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
@@ -103,6 +104,12 @@
 	transition: all 0.3s ease-in-out;
 }
 
+.marker i {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	z-index: 101;
+}
 .marker span img {
 	display: block;
 }
