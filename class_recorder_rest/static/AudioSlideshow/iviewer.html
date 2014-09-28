@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>jquery.iviewer test</title>
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+        <script type="text/javascript" src="js/iviewer/jqueryui.js" ></script>
+        <script type="text/javascript" src="js/iviewer/jquery.mousewheel.min.js" ></script>
+        <script type="text/javascript" src="js/iviewer/jquery.iviewer.js" ></script>
+        <script type="text/javascript">
+            var $ = jQuery;
+            $(document).ready(function(){
+                  var iv2 = $("#viewer2").iviewer(
+                  {
+                      src: "images/1.JPG",
+			zoom: "fit"
+                  });
+            });
+        </script>
+        <link rel="stylesheet" href="css/iviewer/jquery.iviewer.css" />
+        <style>
+            .viewer
+            {
+                width: 100px;
+                height: 600px;
+                border: 1px solid black;
+                position: relative;
+            }
+
+            .wrapper
+            {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- wrapper div is needed for opera because it shows scroll bars for reason -->
+        <div class="wrapper">
+            <div id="viewer2" class="viewer" style="width: 50%;"></div>
+            <br />
+        </div>
+    </body>
+</html>
